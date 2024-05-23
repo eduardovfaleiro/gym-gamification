@@ -3,7 +3,7 @@ import 'package:gym_gamification/domain/entities/password.dart';
 import 'package:gym_gamification/ui/widgets/buttons/gg_button_outlined.dart';
 
 import '../../../widgets/buttons/gg_button_filled.dart';
-import '../../../widgets/gg_field.dart';
+import '../../../widgets/fields/gg_field_text.dart';
 import 'login_controller.dart';
 
 class LoginPage extends StatefulWidget {
@@ -27,12 +27,12 @@ class _LoginPageState extends State<LoginPage> {
           children: [
             // Image.asset(name)
             const SizedBox(height: 54),
-            GGField(
+            GGFieldText(
               label: 'Usuário',
               onChanged: (user) => loginController.name = user,
             ),
             const SizedBox(height: 4),
-            GGField(
+            GGFieldText(
               label: 'Senha',
               obscureText: true,
               onChanged: (password) => loginController.password = password,
@@ -41,7 +41,7 @@ class _LoginPageState extends State<LoginPage> {
             Column(
               children: [
                 GGButtonFilled(
-                  onPressed: () {
+                  onTap: () {
                     loginController.handleLogin(context);
                   },
                   label: 'Login',

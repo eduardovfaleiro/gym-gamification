@@ -28,7 +28,7 @@ class _GGButtonOutlinedState extends State<GGButtonOutlined> {
 
           widget.onPressed?.call();
 
-          _tapLock.release();
+          _tapLock.unlock();
         },
         child: Text(widget.label),
       ),

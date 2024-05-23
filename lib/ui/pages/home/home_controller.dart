@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gym_gamification/data/repositories/training_day_repository.dart';
 import 'package:gym_gamification/domain/entities/training_day.dart';
-import 'package:gym_gamification/ui/widgets/gg_field.dart';
 
 import '../../../core/cloud_firestore_instance.dart';
 import '../../messages/gg_snackbar.dart';

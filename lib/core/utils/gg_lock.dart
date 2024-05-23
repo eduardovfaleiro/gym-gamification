@@ -12,7 +12,7 @@ class GGLock {
     return false;
   }
 
-  void release() {
+  void unlock() {
     isLocked = false;
   }
 }

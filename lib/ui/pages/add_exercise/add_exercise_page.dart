@@ -5,7 +5,7 @@ import 'package:gym_gamification/ui/messages/gg_snackbar.dart';
 import 'package:gym_gamification/ui/widgets/buttons/gg_button_filled.dart';
 
 import '../../../domain/entities/exercise.dart';
-import '../../widgets/gg_field.dart';
+import '../../widgets/fields/gg_field_text.dart';
 
 class AddExercisePage extends StatelessWidget {
   final int weekday;
@@ -24,7 +24,7 @@ class AddExercisePage extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
         child: Column(
           children: [
-            GGField(
+            GGFieldText(
               label: 'Nome',
               onChanged: (value) {
                 _nome.text = value;
@@ -32,7 +32,7 @@ class AddExercisePage extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             GGButtonFilled(
-              onPressed: () async {
+              onTap: () async {
                 await TrainingDayRepository.I.addExercise(weekday, Exercise(name: _nome.text)).then((_) {
                   GGSnackBar.show(context, 'Exercício adicionado com sucesso!');
                   Navigator.pop(context);

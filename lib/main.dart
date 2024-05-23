@@ -55,6 +55,7 @@ class GymGamification extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+        fontFamily: 'Alice',
         colorSchemeSeed: const Color.fromARGB(255, 89, 91, 212),
         appBarTheme: const AppBarTheme(centerTitle: true),
         elevatedButtonTheme: ElevatedButtonThemeData(

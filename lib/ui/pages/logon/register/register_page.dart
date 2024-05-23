@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gym_gamification/domain/entities/password.dart';
 import 'package:gym_gamification/ui/widgets/buttons/gg_button_filled.dart';
-import 'package:gym_gamification/ui/widgets/gg_field.dart';
+import 'package:gym_gamification/ui/widgets/fields/gg_field_text.dart';
 
 import 'Register_controller.dart';
 
@@ -26,14 +26,14 @@ class _RegisterPageState extends State<RegisterPage> {
           children: [
             const Text('Bem-vindo ao Gym Gamification!', style: TextStyle(fontSize: 20)),
             const SizedBox(height: 24),
-            GGField(
+            GGFieldText(
               label: 'Usuário',
               onChanged: (user) {
                 registerController.name = user;
               },
             ),
             const SizedBox(height: 4),
-            GGField(
+            GGFieldText(
               label: 'Senha',
               obscureText: true,
               onChanged: (password) {
@@ -42,7 +42,7 @@ class _RegisterPageState extends State<RegisterPage> {
             ),
             const SizedBox(height: 24),
             GGButtonFilled(
-              onPressed: () {
+              onTap: () {
                 registerController.handleRegister(context);
               },
               label: 'Cadastrar',
