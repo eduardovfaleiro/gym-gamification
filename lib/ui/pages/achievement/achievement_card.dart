@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:gym_gamification/core/configs.dart';
 import 'package:gym_gamification/ui/extensions/date_time_extensions.dart';
 
-class AchievementCard extends StatelessWidget {
-  final double weight;
-  final double repetitions;
-  final DateTime setAt;
+import 'achievement.dart';
 
-  const AchievementCard({super.key, required this.weight, required this.repetitions, required this.setAt});
+class AchievementCard extends StatelessWidget {
+  final Achievement achievement;
+
+  const AchievementCard({super.key, required this.achievement});
 
   @override
   Widget build(BuildContext context) {
@@ -55,11 +55,11 @@ class AchievementCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        '$weight ${Configs.massUnit}',
+                        '${achievement.weight} ${Configs.massUnit}',
                         style: const TextStyle(fontFamily: 'Mantinia', fontWeight: FontWeight.w500),
                       ),
                       Text(
-                        'x$repetitions',
+                        'x${achievement.repetitions}',
                         style: const TextStyle(
                           fontSize: 16,
                           color: Color.fromARGB(255, 94, 57, 52),
@@ -70,7 +70,7 @@ class AchievementCard extends StatelessWidget {
                 ],
               ),
               Text(
-                setAt.toDate(),
+                achievement.date.toDate(),
                 style: const TextStyle(
                   fontFamily: 'Mantinia',
                   color: Color.fromARGB(255, 94, 57, 52),

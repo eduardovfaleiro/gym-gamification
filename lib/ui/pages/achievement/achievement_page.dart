@@ -1,10 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gym_gamification/ui/pages/achievement/achievement_card.dart';
 import 'package:gym_gamification/ui/widgets/buttons/gg_button_filled.dart';
 import 'package:gym_gamification/ui/widgets/fields/gg_field_text.dart';
 
+import '../../widgets/fields/gg_field_date.dart';
 import '../../widgets/fields/gg_field_val.dart';
+import 'achievement.dart';
+import 'achievement_controller.dart';
 
 class AchievementPage extends StatefulWidget {
   const AchievementPage({super.key});
@@ -17,7 +21,7 @@ class _AchievementPageState extends State<AchievementPage> {
   Future<void> _showModalBottomSheet() async {
     var weightController = TextEditingController();
     var repetitionsController = TextEditingController();
-    var setAtController = TextEditingController();
+    var dateController = GGControllerDate();
 
     showModalBottomSheet(
       isScrollControlled: true,
@@ -64,7 +68,7 @@ class _AchievementPageState extends State<AchievementPage> {
                     Align(
                       alignment: Alignment.topRight,
                       child: IconButton(
-                        onPressed: () => Navigator.pop(context),
+                        onPressed: () {},
                         icon: const Icon(Icons.done),
                         tooltip: 'Confirmar',
                       ),
@@ -79,7 +83,7 @@ class _AchievementPageState extends State<AchievementPage> {
                       const SizedBox(height: 8),
                       GGFieldVal(label: 'Repetições', controller: repetitionsController),
                       const SizedBox(height: 8),
-                      GGFieldVal(label: 'Data', controller: setAtController),
+                      GGFieldDate(label: 'Data', controller: dateController),
                       const SizedBox(height: 16),
                     ],
                   ),
@@ -175,11 +179,23 @@ class _AchievementPageState extends State<AchievementPage> {
               Flexible(
                 child: SingleChildScrollView(
                   padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      AchievementCard(weight: 110, repetitions: 4, setAt: DateTime.now()),
-                    ],
+                  child: BlocBuilder(
+                    bloc: context.read<AchievementController>(),
+                    builder: (context, achievements) {
+                      return Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: List.generate(
+                          (achievements as List<Achievement>).length,
+                          (index) => AchievementCard(
+                            achievement: Achievement(
+                              weight: 110,
+                              repetitions: 4,
+                              date: DateTime.now(),
+                            ),
+                          ),
+                        ),
+                      );
+                    },
                   ),
                 ),
               ),
